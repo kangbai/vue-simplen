@@ -50,7 +50,14 @@ export default {
             ]
         }
     },
-
+    created () {
+        this.$httpService({
+            url: '/list',
+            type: 'get'
+        }).then((res) => {
+            console.log(res, '---res')
+        })
+    },
     methods: {
         handleSelect (index) {
             this.$router.push(index)
