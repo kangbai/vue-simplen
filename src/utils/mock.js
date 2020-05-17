@@ -4,12 +4,13 @@
 
  // 首先引入Mock
 const Mock = require('mockjs');
-let { origin: baseUrl } = location
+let { origin: baseUrl } = location // 定位全局的请求前缀
 // 设置拦截请求的相应时间
 Mock.setup({
   timeout: '200-600'
 });
 
+// 自定义扩展
 Mock.Random.extend({
     phone: function () {
         let phonePrefixs = ['132', '135', '189', '166', '189', '136', '177']
@@ -21,11 +22,11 @@ Mock.Random.extend({
     }
 })
 
-console.log(Mock.Random.phone())
-
 Mock.mock(`${baseUrl}/list`, 'get', function() {
     return Mock.mock({
-        "userList|20-100": [{
+        "status": "200",
+        "msg": "success",
+        "data|150-300": [{
             'name': '@cname',
             'id': '@guid',
             'sex|1': ['男', '女'],
@@ -42,7 +43,7 @@ Mock.mock(`${baseUrl}/list`, 'get', function() {
 Mock.mock(`${baseUrl}/roleList`, 'get', function() {
     return Mock.mock(
         () => {
-            return [ {name: 'aaa'} ]
+            return [ {name: '系统管理员'} ]
         }
     );
 });

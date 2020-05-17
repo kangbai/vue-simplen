@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 let { origin } = location // 默认获取当前源为默认baseURL
+let baseURL = process.env.NODE_ENV != 'production' ? origin : '' // 如果不是线上环境，就是用本地源, 否则相反
 
 let instance = axios.create({
-    baseURL: origin,
+    baseURL,
     timeout: 10000 // 如果请求话费了超过 `timeout` 的时间，请求将被中断
 });
 

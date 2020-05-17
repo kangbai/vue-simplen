@@ -45,22 +45,18 @@ export default {
         return {
             isMenuRouter: false,
             menuList: [
-                { id: '1', name: '角色模块', children: [ { name: '战士角色页', pagePath: '/warriorRole' }, { name: '刺客角色页',  pagePath: '/assassinRole'} ]  },
-                { id: '2', name: '人员管理', children: [ { name: '凯', pagePath: '/kai' }, { name: '李白', pagePath: '/libai'} ]  }
+                { id: '1', name: '履职管理', children: [ { name: '履职员工', pagePath: '/performStaff' } ]  },
+                { id: '2', name: '角色模块', children: [ { name: '战士角色页', pagePath: '/warriorRole' }, { name: '刺客角色页',  pagePath: '/assassinRole'} ]  },
+                { id: '3', name: '人员管理', children: [ { name: '凯', pagePath: '/kai' }, { name: '李白', pagePath: '/libai'} ]  }
             ]
         }
     },
-    created () {
-        this.$httpService({
-            url: '/list',
-            type: 'get'
-        }).then((res) => {
-            console.log(res, '---res')
-        })
-    },
     methods: {
         handleSelect (index) {
-            this.$router.push(index)
+           let currentPath = this.$router.history.current.path;
+            if (!Object.is(currentPath, index)) { // 拿当前url中的路径跟点击的菜单路径做对比，如果点击跟当前的url相等，就不做处理
+                this.$router.push(index)
+            }
         }
     }
 }

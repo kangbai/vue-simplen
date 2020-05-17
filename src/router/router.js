@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue' // 主页
 import Login from '../views/Login'  // 登录页
-import { WarriorRole, Kai, Libai, AssassinRole } from '../modules' // 模块中的菜单页
+import { WarriorRole, Kai, Libai, AssassinRole, PerformStaff } from '../modules' // 模块中的菜单页
 
 Vue.use(Router)
 
@@ -34,6 +34,11 @@ export default new Router({
                     path: '/libai',
                     name: 'libai',
                     component: Libai
+                },
+                {
+                    path:  '/performStaff',
+                    name: 'performStaff',
+                    component: PerformStaff
                 }
             ]
         },
